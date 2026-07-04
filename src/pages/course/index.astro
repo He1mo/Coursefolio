@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { legacyLessons } from '../../data/legacy-content';
+---
+
+<SiteLayout title="中国古代文学史在线学习课程" active="中国古代文学史在线学习课程">
+  <article class="content-panel">
+    <h1>中国古代文学史在线学习课程</h1>
+    <p class="section-intro">以下课时目录来自原 WordPress/LifterLMS 导出。视频文件未恢复，因此本页先保留课程结构和可恢复文字。</p>
+    <div class="entry-list">
+      {legacyLessons.map((lesson, index) => (
+        <a class="entry-card" href={`/course/${lesson.slug}/`}>
+          <span class="entry-index">{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <h2>{lesson.title}</h2>
+            {lesson.excerpt && <p>{lesson.excerpt}</p>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </article>
+</SiteLayout>

@@ -1,0 +1,21 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { legacyPosts } from '../../data/legacy-content';
+
+const posts = legacyPosts.filter((post) => post.title !== '课程概述');
+---
+
+<SiteLayout title="学生课程实践" active="学生课程实践">
+  <article class="content-panel">
+    <h1>学生课程实践</h1>
+    <p class="section-intro">以下内容来自原 WordPress 文章与学生课程实践栏目。媒体文件未恢复，页面优先保留作品标题、文字和结构。</p>
+    <div class="practice-grid">
+      {posts.map((post) => (
+        <a class="practice-card" href={`/practice/${post.slug}/`}>
+          <h2>{post.title}</h2>
+          {post.excerpt && <p>{post.excerpt}</p>}
+        </a>
+      ))}
+    </div>
+  </article>
+</SiteLayout>

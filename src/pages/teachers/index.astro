@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { teachers } from '../../data/teachers';
+---
+
+<SiteLayout title="授课教师简介" active="授课教师简介">
+  <article class="content-panel teachers-panel">
+    <h1>授课教师简介</h1>
+
+    <div class="teacher-list" aria-label="授课教师列表">
+      {teachers.map((teacher) => (
+        <a class="teacher-row" href={`/teachers/${teacher.slug}/`}>
+          <div class="teacher-photo-wrap">
+            <img class="teacher-photo" src={teacher.image} alt={`${teacher.name}头像`} loading="lazy" />
+          </div>
+          <div class="teacher-summary">
+            <h2>{teacher.name}{teacher.title ? ` ${teacher.title.split('，')[0]}` : ''}</h2>
+            {teacher.title && <p>{teacher.title}</p>}
+            {teacher.research && <p>主要研究方向：{teacher.research}</p>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </article>
+</SiteLayout>

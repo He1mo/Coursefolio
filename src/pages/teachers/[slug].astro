@@ -1,0 +1,45 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { teachers } from '../../data/teachers';
+
+export function getStaticPaths() {
+  return teachers.map((teacher) => ({
+    params: { slug: teacher.slug },
+    props: { teacher }
+  }));
+}
+
+const { teacher } = Astro.props;
+---
+
+<SiteLayout title={teacher.name} active="授课教师简介">
+  <article class="content-panel teacher-detail-panel">
+    <a class="back-link" href="/teachers/">返回授课教师简介</a>
+
+    <div class="teacher-detail">
+      <aside class="teacher-detail-card">
+        <img class="teacher-detail-photo" src={teacher.image} alt={`${teacher.name}头像`} />
+        <h1>{teacher.name}</h1>
+        <p>{teacher.title}</p>
+        {teacher.email && <p>邮箱：{teacher.email}</p>}
+      </aside>
+
+      <section class="teacher-detail-content">
+        <h2>自我介绍</h2>
+        <p>
+          {teacher.name}{teacher.title ? `，${teacher.title}` : ''}。
+          {teacher.research ? `主要研究方向为${teacher.research}。` : ''}
+        </p>
+
+        <h2>研究领域</h2>
+        <p>{teacher.research || '暂无资料'}</p>
+
+        <h2>资料来源</h2>
+        <p>
+          本页基础信息整理自广州南方学院教师主页。
+          <a class="source-link" href={teacher.detailUrl} target="_blank" rel="noreferrer">查看原始详情页</a>
+        </p>
+      </section>
+    </div>
+  </article>
+</SiteLayout>

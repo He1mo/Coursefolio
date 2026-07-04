@@ -1,0 +1,13 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { legacyPages } from '../data/legacy-content';
+
+const page = legacyPages.find((item) => item.slug === 'goals');
+---
+
+<SiteLayout title="授课目标" active="授课目标">
+  <article class="content-panel">
+    <h1>授课目标</h1>
+    <div class="legacy-content" set:html={page?.content || '<p>暂无可恢复正文。</p>'} />
+  </article>
+</SiteLayout>

@@ -1,0 +1,21 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { legacyLessons } from '../../data/legacy-content';
+
+export function getStaticPaths() {
+  return legacyLessons.map((lesson) => ({
+    params: { slug: lesson.slug },
+    props: { lesson }
+  }));
+}
+
+const { lesson } = Astro.props;
+---
+
+<SiteLayout title={lesson.title} active="中国古代文学史在线学习课程">
+  <article class="content-panel">
+    <a class="back-link" href="/course/">返回在线学习课程</a>
+    <h1>{lesson.title}</h1>
+    <div class="legacy-content" set:html={lesson.content || '<p>该课时在 XML 中未保存可恢复正文。</p>'} />
+  </article>
+</SiteLayout>

@@ -1,0 +1,13 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { legacyPages } from '../data/legacy-content';
+
+const page = legacyPages.find((item) => item.slug === 'exercises');
+---
+
+<SiteLayout title="课后习题" active="课后习题">
+  <article class="content-panel">
+    <h1>课后习题</h1>
+    <div class="empty-state" set:html={page?.content || '<p>原 WordPress XML 中未保存该栏目的正文内容；旧站习题可能由测验插件生成。</p>'} />
+  </article>
+</SiteLayout>

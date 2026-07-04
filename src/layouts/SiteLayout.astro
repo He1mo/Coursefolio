@@ -1,0 +1,60 @@
+---
+interface Props {
+  title: string;
+  active?: string;
+}
+
+import '../styles/global.css';
+
+const { title, active = '首页' } = Astro.props;
+
+const navItems = [
+  { label: '首页', href: '/' },
+  { label: '课程概述', href: '/overview/' },
+  { label: '授课教师简介', href: '/teachers/' },
+  { label: '授课目标', href: '/goals/' },
+  { label: '课程大纲', href: '/syllabus/' },
+  { label: '参考资料', href: '/references/' },
+  { label: '学生课程实践', href: '/practice/' },
+  { label: '中国古代文学史在线学习课程', href: '/course/' }
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="中国古代文学史在线课程纪念复活项目" />
+    <title>{title} | 中国古代文学史在线课程</title>
+    <link rel="icon" href="/favicon.png" type="image/png" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-logo-wrap">
+          <img class="brand-logo" src="/images/logo1.png" alt="文学与传媒学院" />
+          <p class="course-name">中国古代文学史在线课程</p>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav" aria-label="主导航">
+      <div class="nav-inner">
+        {navItems.map((item) => (
+          <a class:list={['nav-link', item.label === active && 'active']} href={item.href}>{item.label}</a>
+        ))}
+        <button class="search-button" type="button" aria-label="搜索">⌕</button>
+      </div>
+    </nav>
+
+    <main class="page-shell">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p>© 中山大学南方学院 文学与传媒学院</p>
+      <p>Powered By B1ackder</p>
+    </footer>
+  </body>
+</html>

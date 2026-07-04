@@ -1,0 +1,17 @@
+{
+  "name": "coursefolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "extract:content": "node scripts/extract-wp-content.mjs",
+    "preview": "astro preview --host 127.0.0.1",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^7.0.6"
+  },
+  "devDependencies": {}
+}

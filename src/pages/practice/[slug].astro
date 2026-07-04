@@ -1,0 +1,21 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { legacyPosts } from '../../data/legacy-content';
+
+export function getStaticPaths() {
+  return legacyPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<SiteLayout title={post.title} active="学生课程实践">
+  <article class="content-panel">
+    <a class="back-link" href="/practice/">返回学生课程实践</a>
+    <h1>{post.title}</h1>
+    <div class="legacy-content" set:html={post.content || '<p>该文章在 XML 中未保存可恢复正文。</p>'} />
+  </article>
+</SiteLayout>
